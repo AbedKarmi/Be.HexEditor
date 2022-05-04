@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Threading;
 using System.Globalization;
 using Be.HexEditor.Properties;
 using Be.Windows.Forms;
+using System.Text;
 
 namespace Be.HexEditor
 {
@@ -23,7 +24,11 @@ namespace Be.HexEditor
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(l);
             }
 
+            EncodingProvider provider = CodePagesEncodingProvider.Instance;
+            Encoding.RegisterProvider(provider);
+
             Application.EnableVisualStyles();
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.SetCompatibleTextRenderingDefault(false);
 
             ApplictionForm = new FormHexEditor();
