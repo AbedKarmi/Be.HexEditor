@@ -739,7 +739,7 @@ namespace Be.Windows.Forms
 
 			protected bool RaiseKeyPress(char keyChar)
 			{
-				KeyPressEventArgs e = new KeyPressEventArgs(keyChar);
+				KeyPressEventArgs e = new(keyChar);
 				_hexBox.OnKeyPress(e);
 				return e.Handled;
 			}
@@ -783,7 +783,7 @@ namespace Be.Windows.Forms
 
 			protected bool RaiseKeyUp(Keys keyData)
 			{
-				KeyEventArgs e = new KeyEventArgs(keyData);
+				KeyEventArgs e = new(keyData);
 				_hexBox.OnKeyUp(e);
 				return e.Handled;
 			}
@@ -1911,16 +1911,18 @@ namespace Be.Windows.Forms
 				return new BytePositionInfo(0, 0);
 			return new BytePositionInfo(bytePos, byteCharacterPos);
 		}
-		#endregion
+        #endregion
 
-		#region PreProcessMessage methods
-		/// <summary>
-		/// Preprocesses windows messages.
-		/// </summary>
-		/// <param name="m">the message to process.</param>
-		/// <returns>true, if the message was processed</returns>
-		[SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true), SecurityPermission(SecurityAction.InheritanceDemand, UnmanagedCode = true)]
-		public override bool PreProcessMessage(ref Message m)
+        #region PreProcessMessage methods
+        /// <summary>
+        /// Preprocesses windows messages.
+        /// </summary>
+        /// <param name="m">the message to process.</param>
+        /// <returns>true, if the message was processed</returns>
+#pragma warning disable SYSLIB0003 // Type or member is obsolete
+        [SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true), SecurityPermission(SecurityAction.InheritanceDemand, UnmanagedCode = true)]
+#pragma warning restore SYSLIB0003 // Type or member is obsolete
+        public override bool PreProcessMessage(ref Message m)
 		{
 			switch (m.Msg)
 			{
@@ -2069,14 +2071,14 @@ namespace Be.Windows.Forms
 			// put bytes into buffer
 			byte[] buffer = GetCopyData();
 
-			DataObject da = new DataObject();
+			DataObject da = new();
 
 			// set string buffer clipbard data
 			string sBuffer = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
 			da.SetData(typeof(string), sBuffer);
 
 			//set memorystream (BinaryData) clipboard data
-			System.IO.MemoryStream ms = new System.IO.MemoryStream(buffer, 0, buffer.Length, false, true);
+			System.IO.MemoryStream ms = new(buffer, 0, buffer.Length, false, true);
 			da.SetData("BinaryData", ms);
 
 			Clipboard.SetDataObject(da, true);
@@ -2252,7 +2254,7 @@ namespace Be.Windows.Forms
 			// put bytes into buffer
 			byte[] buffer = GetCopyData();
 
-			DataObject da = new DataObject();
+			DataObject da = new();
 
 			// set string buffer clipbard data
 			string hexString = ConvertBytesToHex(buffer); ;

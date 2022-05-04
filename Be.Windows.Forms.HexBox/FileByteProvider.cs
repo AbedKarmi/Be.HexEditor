@@ -51,7 +51,7 @@ namespace Be.Windows.Forms
 		/// <summary>
 		/// Contains all changes
 		/// </summary>
-		WriteCollection _writes = new WriteCollection();
+		WriteCollection _writes = new();
 
 		/// <summary>
 		/// Contains the file name.

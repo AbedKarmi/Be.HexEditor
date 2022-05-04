@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Be.Windows.Forms.HexBox</id>
-    <version>1.6.1</version>
+    <version>1.7.0</version>
     <title>Be.Windows.Forms.HexBox</title>
     <authors>Bernhard Elbl</authors>
     <owners>Jaroslav Imrich</owners>
